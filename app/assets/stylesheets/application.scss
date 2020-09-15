@@ -1,0 +1,63 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@font-face {
+  font-family: ‘Glyphicons Halflings’;
+  src: url(‘/assets/bootstrap-icons-1.0.0’);
+  src: url(‘/assets/glyphicons-halflings-regular.eot?#iefix’) format(‘embedded-opentype’),
+  url(‘/assets/glyphicons-halflings-regular.woff’) format(‘woff’),
+  url(‘/assets/glyphicons-halflings-regular.ttf’) format(‘truetype’),
+  url(‘/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular’) format(‘svg’);
+}
+
+header {
+  color: white;
+}
+
+header .navbar-left span {
+  font-size: 20px;
+  padding-top: 10px;
+}
+
+.body {
+  margin-top: 51px;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+a:visited {
+  color: #666;
+}
+
+.btn-hover:hover {
+  background-color: black;
+}
+
+.hover:hover {
+  background-color: #EEEEEE;
+}
+
+#error_explation {
+  color: red;
+}
+
+.notice {
+  color: green;
+}
