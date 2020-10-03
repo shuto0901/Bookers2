@@ -4,12 +4,14 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @user = User.find(current_user.id)
     @books = Book.all
+    # @book = Book.find(params[:book_id])
   end
 
   def show
     @book_new = Book.new
     @book = Book.find(params[:id])
     @books = Book.all
+    @book_comment = BookComment.new
   end
 
   def create
@@ -36,6 +38,7 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
+    @book_comment = BookComment.new
     @user = User.find(current_user.id)
     @user_book = @user.books
     if @book.update(book_params)

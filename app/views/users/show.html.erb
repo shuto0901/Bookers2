@@ -57,6 +57,7 @@
             </td>
             <td><%= link_to user.title, book_path(user.id), class: "btn-hover" %></td>
             <td><%= user.body %></td>
+            <td>コメント:<%= user.book_comments.count %>件</td>
         </tr>
         <% end %>
       </tbody>
