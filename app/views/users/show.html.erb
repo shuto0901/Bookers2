@@ -1,48 +1,35 @@
-<div class="body">
-  <div class="container">
-     <p class="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-xs-3">
+    <h2>User info</h2>
+    <%= render 'users/profile', user: @user %>
 
-    <%= form_with url: search_path, :method => 'get', local: true do |f| %>
-    <%= f.text_field :word %>
-    <%= f.select :range, options_for_select({"user" => "1" , "book" => "2"}) %>
-    <%= f.select :search, options_for_select({"前方一致" => "forward_match" , "後方一致" => "backward_match" , "完全一致" => "perfect_match" , "部分一致" => "partial_match"}) %>
-    <%= f.submit 'Search' %>
+    <h2>New book</h2>
+    <%= render 'books/form', book: @book_new %>
+  </div>
+<div class="col-xs-9">
+     <h2>Books</h2>
+     <table class="table">
+         <thead>
+             <tr>
+                 <th></th>
+                 <th>Title</th>
+                 <th>Opinion</th>
+             </tr>
+         </thead>
+      <tbody>
+      <% @user_book.each do |user| %>
+    <tr class="hover">
+        <td>
+            <%= link_to user_path(user.id) do %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size: '40x40' %>
+            <% end %>
+        </td>
+        <td><%= link_to user.title, book_path(user.id), class: "btn-hover" %></td>
+        <td><%= user.body %></td>
+        <td>コメント:<%= user.book_comments.count %>件</td>
+    </tr>
     <% end %>
-
-    <div class="row">
-      <div class="col-xs-3">
-        <h2>User info</h2>
-        <%= render 'users/profile', user: @user %>
-
-        <h2>New book</h2>
-        <%= render 'books/form', book: @book_new %>
-      </div>
-    <div class="col-xs-9">
-         <h2>Books</h2>
-         <table class="table">
-             <thead>
-                 <tr>
-                     <th></th>
-                     <th>Title</th>
-                     <th>Opinion</th>
-                 </tr>
-             </thead>
-          <tbody>
-          <% @user_book.each do |user| %>
-        <tr class="hover">
-            <td>
-                <%= link_to user_path(user.id) do %>
-                <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size: '40x40' %>
-                <% end %>
-            </td>
-            <td><%= link_to user.title, book_path(user.id), class: "btn-hover" %></td>
-            <td><%= user.body %></td>
-            <td>コメント:<%= user.book_comments.count %>件</td>
-        </tr>
-        <% end %>
-      </tbody>
-      </table>
-      </div>
-    </div>
+  </tbody>
+  </table>
   </div>
 </div>
