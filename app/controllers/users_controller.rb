@@ -32,11 +32,6 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def show_follow
-   @user = User.find(params[:id])
-   @users = @user.follow
-  end
-
   private
 
   def user_params

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'book_comments/destroy'
   root 'home#top'
   get "home/about" => "home#about"
+  get "search" => "search#search"
   post 'follow/:id' => 'relationships#follow', as: 'follow'
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
   devise_for :users

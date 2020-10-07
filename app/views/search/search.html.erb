@@ -1,0 +1,54 @@
+<div class="body">
+    <div class="container">
+
+    <%= form_with url:search_path, :method => 'get', local: true do |f| %>
+    <%= f.text_field :word %>
+    <%= f.select :range, options_for_select({"user" => "1" , "book" => "2"}) %>
+    <%= f.select :search, options_for_select({"前方一致" => "forward_match" , "後方一致" => "backward_match" , "完全一致" => "perfect_match" , "部分一致" => "partial_match"}) %>
+    <%= f.submit 'Search' %>
+    <% end %>
+
+    <% if @range == "1"%>
+    <h1>User</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @user.each do |user| %>
+          <tr>
+            <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size: '40x40' %></td>
+            <td><%= user.name %></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <% end %>
+    </table>
+    <% elsif @range == "2" %>
+        <h2>Books search for </h2>
+        <table class="table">
+          <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <% @book.each do |book| %>
+        <tbody>
+          <tr>
+            <td><%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size: '40x40' %></td>
+            <td><%= book.title %></td>
+            <td><%= book.body %></td>
+          </tr>
+        </tbody>
+        <% end %>
+        </table>
+    <% else %>
+    <% end %>
+    </div>
+</div>

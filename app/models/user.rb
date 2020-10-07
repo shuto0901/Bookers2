@@ -30,4 +30,18 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
+
+  def self.search(search,word)
+    if search == "forward_match"
+      User.where(name: word)
+    elsif search == "backward_match"
+      User.where('name LIKE ?', word + '%')
+    elsif search == "perfect_match"
+      User.where('name LIKE ?', '%' + word)
+    elsif search == "partial_match"
+      User.where('name LIKE ?', '%' + word + '%')
+    else
+      User.all
+    end
+  end
 end
